@@ -1,3 +1,16 @@
+/*************************************************************************
+* BTI325– Test 2
+* I declare that this assignment is my own work in accordance with Seneca Academic
+Policy. No part * of this assignment has been copied manually or electronically from any
+other source
+* (including 3rd party web sites) or distributed to other students.
+*
+* Name: Meetsimar Kaur Student ID: 106510217 Date: 18/10/2022
+*
+* Your app’s URL (from Cyclic) : https://light-hat-pike.cyclic.app
+*
+*************************************************************************/
+
 const { resolve } = require('dns');
 var fs = require('fs');
 
@@ -35,7 +48,7 @@ exports.highGPA = function () {
         if (students.length > 0) {
             var temp;
             for (var i = 0; i < students.length; i++) {
-                for (var j = i + 1; j < students.length; j++) {
+                for (var j = i + 1; j < students.length; j++) { // using bubble sort algorithm
                     if (students[i].gpa > students[j].gpa) {
                         temp = students[i];
                         students[i] = students[j];
