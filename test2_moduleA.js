@@ -33,19 +33,42 @@ exports.getBSD = function () {
 exports.highGPA = function () {
     return new Promise(function (resolve, reject) {
         if (students.length > 0) {
-            for (var i in students) {
-
-                if(students[i].gpa > students[i + 1].gpa)
-                {
-                    highgpa = students[i];
+            var temp;
+            for (var i = 0; i < students.length; i++) {
+                for (var j = i + 1; j < students.length; j++) {
+                    if (students[i].gpa > students[j].gpa) {
+                        temp = students[i];
+                        students[i] = students[j];
+                        students[j] = temp;
+                    }
                 }
-                
             }
 
-            resolve(highgpa);
+             
+            //  If more than one
+            //  student has the same highest GPA, this function returns the first student with the
+            //  highest GPA. 
+            // function defined below
+
+
+            for (var i in students) {
+                if (students[students.length - 1] != students[i]) {
+                    if (students[students.length - 1].gpa == students[i].gpa) {
+                        if (students[students.length - 1].studId > students[i].studId)
+                        {
+                            highgpa = students[i];
+                            resolve(students[i]);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            resolve(students[students.length - 1]);
         }
+
         else {
             reject("no results returned");
-        };
+        }
     })
 }

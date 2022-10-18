@@ -14,13 +14,13 @@ function expressoutput() {
 }
 
 app.get('/', (req, res) =>{
-    let resText = "<h2>Declaration</h2><br><br>";
-    resText += "<body>I declare that this test is my own work in accordance with Seneca Academic Policy. No part of this test has <br> been copied manually or electronically from any other source.</body>"
+    let resText = "<h2>Declaration (test size in heading 2)</h2><br>";
+    resText += "<body>I acknowledge the College's academic integrity policy - and my own integrity - remain in effect <br> whether my work is done remotely or onsite. Any test or assignment is an act of trust between <br> me and my instructor, and especially with my classmates... even when no one is watching. I <br> declare I will not break that trust.</body>"
     resText += "<br><br>Name: ";
     resText += "<mark><b>Meetsimar Kaur</b></mark><br>"
     resText += "<br>Student Number: ";
     resText += "<mark><b>106510217</b></mark><br><br>"
-    resText += `<a href = '/CPA'>Click to visit CPA Students</a>`
+    resText += `<a href = '/BSD'>Click to visit BSD Students</a><br><br>`
     resText += `<a href = '/highGPA'>Click to see who has the highest GPA</a>`
     res.send(resText);
 })
@@ -35,12 +35,20 @@ app.get('/BSD', function (req, res) {
 })
 
 app.get('/highGPA', function(req, res){
+    
     data.highGPA().
         then(data => {
-            res.json(data);
+            let resText = "<h1>Highest GPA</h1>";
+            resText += "<p>Student ID: " + data.studId + "<br>"
+           resText += "<p>Name: " + data.name + "<br>"
+           resText += "<p>Program: " + data.program + "<br>"
+           resText += "<p>GPA: " + data.gpa + "</p>"
+
+           res.send(resText);
         }).catch(err => {
             console.log(err);
         })
+
 })
 
 app.use(function (req, res) {
