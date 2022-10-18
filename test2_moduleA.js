@@ -6,7 +6,7 @@ var highgpa;
 
 exports.init = function () {
     return new Promise(function (resolve, reject) {
-        fs.readFile('./data/students.json', (err, data) => {
+        fs.readFile('./students.json', (err, data) => {
             if (err) {
                 reject("Failure to read file students.json!");
             }
